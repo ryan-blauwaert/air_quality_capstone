@@ -14,7 +14,7 @@ def transpose_df(df, write_to_location):
     cols =  np.arange(1999, 2019)
     df.columns = cols
     df.drop(index=['Unnamed: 0', 'Location'], inplace=True)
-    df.to_csv(write_to_location)
+    df.to_csv(write_to_location, index=False)
 
 
 
