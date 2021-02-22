@@ -19,7 +19,7 @@ def air_data_cleaning(df, write_to_path, df2=inf_mor):
     df['CBSA'] = df['CBSA'].str.split('/', expand=True)
     cities_to_keep = df2['Location'].unique()
     df = df.loc[df['CBSA'].isin(cities_to_keep)]
-    cbsa_codes_to_drop = [17380, 17420, 17980, 18060, 27340, 38860]
+    cbsa_codes_to_drop = [17380, 17420, 17980, 18020, 18060, 27340, 33060, 38860]
     df = df.loc[~(df['CBSA Code'].isin(cbsa_codes_to_drop))]
     df.rename(columns={'CBSA': 'Location'}, inplace=True)
     df.set_index('Location', drop=True, inplace=True)
