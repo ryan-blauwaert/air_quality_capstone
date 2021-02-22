@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 
+
+
 def create_grouped_dataframe(df_list, index_array, location_to_gather, write_to_location):
     df = pd.DataFrame(data=[], columns=df_list[0].columns)
     df = df.append([_.loc[_['Location'] == location_to_gather] for _ in df_list], 
@@ -14,7 +16,7 @@ def transpose_df(df, write_to_location):
     cols =  np.arange(1999, 2019)
     df.columns = cols
     df.drop(index=['Unnamed: 0', 'Location'], inplace=True)
-    df.to_csv(write_to_location, index=False)
+    df.to_csv(write_to_location)
 
 
 
@@ -51,5 +53,12 @@ if __name__ == '__main__':
     # '../data/cleaned/annual_air_data_means.csv')
 
     annual_means = pd.read_csv('../data/cleaned/annual_air_data_means.csv')
-    transpose_df(annual_means, '../data/cleaned/transposed_national_air_data.csv')
+    # print(annual_means)
+    # transpose_df(annual_means, '../data/cleaned/transposed_national_air_data.csv')
 
+    transposed_national_air = pd.read_csv('../data/cleaned/transposed_national_air_data.csv', index_col='Unnamed: 0')
+    print(transposed_national_air)
+    inf_mor = pd.read_csv('../data/cleaned/infant_mortality_with_mean.csv', index_col='Location')
+    print(inf_mor)
+    transposed_national_air = transposed_national_air.append(inf_mor.loc['Infant Mortality Mean'])
+    transposed_national_air.to_csv('../data/cleaned/transposed_national_air_data.csv')
