@@ -1,11 +1,21 @@
 import pandas as pd
 import numpy as np
 
-def create_averages_dataframe(df_list, index_array, write_to_location):
+def create_grouped_dataframe(df_list, index_array, location_to_gather, write_to_location):
     df = pd.DataFrame(data=[], columns=df_list[0].columns)
-    df = df.append([_.loc[45] for _ in df_list], ignore_index=True)
+    df = df.append([_.loc[_['Location'] == location_to_gather] for _ in df_list], 
+    ignore_index=True)
     df.set_index(index_array, inplace=True)
     df.to_csv(write_to_location)
+
+
+def transpose_df(df, write_to_location):
+    df = df.transpose()
+    cols =  np.arange(1999, 2019)
+    df.columns = cols
+    df.drop(index=['Unnamed: 0', 'Location'], inplace=True)
+    df.to_csv(write_to_location)
+
 
 
 if __name__ == '__main__':
@@ -37,8 +47,9 @@ if __name__ == '__main__':
 
     index_array = pd.Series(range(1999, 2019))
 
-    create_averages_dataframe(df_array, index_array, '../data/cleaned/annual_air_data_means.csv')
+    # create_averages_dataframe(df_array, index_array, 'National Means', 
+    # '../data/cleaned/annual_air_data_means.csv')
 
-
-
+    annual_means = pd.read_csv('../data/cleaned/annual_air_data_means.csv')
+    transpose_df(annual_means, '../data/cleaned/transposed_national_air_data.csv')
 
