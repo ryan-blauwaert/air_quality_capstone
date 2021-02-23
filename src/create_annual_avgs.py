@@ -49,7 +49,7 @@ if __name__ == '__main__':
 
     index_array = pd.Series(range(1999, 2019))
 
-    # create_averages_dataframe(df_array, index_array, 'National Means', 
+    # create_grouped_dataframe(df_array, index_array, 'National Means', 
     # '../data/cleaned/annual_air_data_means.csv')
 
     annual_means = pd.read_csv('../data/cleaned/annual_air_data_means.csv')
@@ -57,8 +57,17 @@ if __name__ == '__main__':
     # transpose_df(annual_means, '../data/cleaned/transposed_national_air_data.csv')
 
     transposed_national_air = pd.read_csv('../data/cleaned/transposed_national_air_data.csv', index_col='Unnamed: 0')
-    print(transposed_national_air)
+    # print(transposed_national_air)
     inf_mor = pd.read_csv('../data/cleaned/infant_mortality_with_mean.csv', index_col='Location')
-    print(inf_mor)
-    transposed_national_air = transposed_national_air.append(inf_mor.loc['Infant Mortality Mean'])
-    transposed_national_air.to_csv('../data/cleaned/transposed_national_air_data.csv')
+    # print(inf_mor)
+    # transposed_national_air = transposed_national_air.append(inf_mor.loc['Infant Mortality Mean'])
+    # transposed_national_air.to_csv('../data/cleaned/transposed_national_air_data.csv')
+
+    # create_grouped_dataframe(df_array, index_array, 'New York City', 
+    # '../data/cleaned/nyc_air_data.csv')
+    nyc_air = pd.read_csv('../data/cleaned/nyc_air_data.csv')
+    # transpose_df(nyc_air, '../data/cleaned/transposed_nyc.csv')
+    # transposed_nyc = pd.read_csv('../data/cleaned/transposed_nyc.csv', index_col='Unnamed: 0')
+    # transposed_nyc = transposed_nyc.append(inf_mor.loc['New York City'])
+    # transposed_nyc.rename(index={'New York City': 'Infant Mortality'}, inplace=True)
+    # transposed_nyc.to_csv('../data/cleaned/transposed_nyc.csv')
