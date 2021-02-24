@@ -18,10 +18,10 @@ def plot_lines(df, metrics, ax_titles, y_labels, title, write_to):
         ax.plot(df.columns, df.loc[metrics[i]], color=next(palette), lw=3)
         ax.set_title(ax_titles[i], size=13)
         ax.set_ylabel(y_labels[i], size=13)
-    ax.set_xlabel('Year', size=13)
+    ax.set_xlabel('Year', size=16)
     fig.suptitle(title, x=.52, y=.99, size=16)
     fig.tight_layout()
-    plt.xticks(rotation=60)
+    plt.xticks(rotation=30)
     plt.savefig(write_to)
 
 def plot_ranges(dfs, metrics, ax_titles, y_labels, title, write_to):
@@ -40,10 +40,10 @@ def plot_ranges(dfs, metrics, ax_titles, y_labels, title, write_to):
         ax.set_ylabel(y_labels[i], size=13)
         ax.fill_between(x=dfs[0].columns, y1=dfs[0].loc[metrics[i]], y2=dfs[-1].loc[metrics[i]],
         color=color, alpha=.3)
-    ax.set_xlabel('Year', size=13)
+    ax.set_xlabel('Year', size=16)
     fig.suptitle(title, x=.52, y=.99, size=16)
     fig.tight_layout()
-    plt.xticks(rotation=60)
+    plt.xticks(rotation=30)
     plt.savefig(write_to)
 
 
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     title = 'New York City Air Pollution and Health Outcomes'
     new_york = pd.read_csv('../data/cleaned/new_york.csv', index_col = 'Unnamed: 0')
     # print(new_york)
-    # plot_lines(new_york, metrics, titles, y_labels, title, '../images/nyc_test.png')
+    plot_lines(new_york, metrics, titles, y_labels, title, '../images/nyc_plots.png')
 
     metrics = ['CO 2nd Max 1-hr', 'SO2 2nd Max 24-hr', 'Ozone 4th Max 8-hr', 'PM2.5 98th Percentile 24-hr',
      'Infant Mortality']

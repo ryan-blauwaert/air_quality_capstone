@@ -48,4 +48,5 @@
 
 * National data inner quartile range
     - highlight negatively sloped trendline across all featured metrics as well as infant mortality
-    - 
+
+![NYC Air Pollution and Health Outcomes](./images/nyc_plots.png)
