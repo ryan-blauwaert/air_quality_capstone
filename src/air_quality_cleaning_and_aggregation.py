@@ -160,7 +160,7 @@ if __name__ == '__main__':
     # get_data_by_location_then_transpose(all_annual_data, 'National Third Quartile', '../data/cleaned/q3.csv')
     
     # READ IN INFANT MORTALITY AND ASTHMA DATAFRAMES 
-    inf_mor = pd.read_csv('../data/cleaned/infant_mortality.csv', index_col = 'Location')
+    inf_mor = pd.read_csv('../data/cleaned/infant_mortality_plus_stats.csv', index_col = 'Location')
     asthma_nyc = pd.read_csv('../data/cleaned/asthma_nyc.csv', index_col = 'Unnamed: 0')
 
     #### ADD INFANT MORTALITY AND ASTHMA ROWS TO NEW YORK DATA ####
@@ -170,8 +170,8 @@ if __name__ == '__main__':
     # print(new_york)
 
     #### ADD INFANT MORTALITY METRICS TO MEAN AND QUARTILE DATA ####
-    # add_infant_mortality_row('../data/cleaned/means.csv', inf_mor, 'Infant Mortality Mean', 'Infant Mortality')
-    # add_infant_mortality_row('../data/cleaned/q1.csv', inf_mor, 'Infant Mortality First Quartile', 'Infant Mortality')
-    # add_infant_mortality_row('../data/cleaned/median.csv', inf_mor, 'Infant Mortality Median', 'Infant Mortality')
-    # add_infant_mortality_row('../data/cleaned/q3.csv', inf_mor, 'Infant Mortality Third Quartile', 'Infant Mortality')
+    add_infant_mortality_row('../data/cleaned/means.csv', inf_mor, 'Infant Mortality Mean', 'Infant Mortality')
+    add_infant_mortality_row('../data/cleaned/q1.csv', inf_mor, 'Infant Mortality First Quartile', 'Infant Mortality')
+    add_infant_mortality_row('../data/cleaned/median.csv', inf_mor, 'Infant Mortality Median', 'Infant Mortality')
+    add_infant_mortality_row('../data/cleaned/q3.csv', inf_mor, 'Infant Mortality Third Quartile', 'Infant Mortality')
 
