@@ -50,7 +50,7 @@ if __name__ == '__main__':
     city_df_lists = correlation_by_city(all_air, inf_mor)
     # print(city_df_lists[5])
 
-    append_dataframes(city_df_lists, '../data/cleaned/all_cities_correlation.csv')
+    # append_dataframes(city_df_lists, '../data/cleaned/all_cities_correlation.csv')
 
-    # all_cities_corr = pd.read_csv('../data/cleaned/all_cities_correlation.csv')
-    # print(all_cities_corr.loc[all_cities_corr['Location']=='Charlotte'] & all_cities_loc)
+    all_cities_corr = pd.read_csv('../data/cleaned/all_cities_correlation.csv')
+    
