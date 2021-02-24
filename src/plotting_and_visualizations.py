@@ -74,5 +74,5 @@ if __name__ == '__main__':
     q3 = pd.read_csv('../data/cleaned/q3.csv', index_col='Unnamed: 0')
 
     title = 'National Air Pollution and Infant Mortality Inner Quartile Range'
-    plot_ranges([q1, medians, q3], metrics, titles, y_labels, title, '../images/inner_quartile.png')
+    # plot_ranges([q1, medians, q3], metrics, titles, y_labels, title, '../images/inner_quartile.png')
     
