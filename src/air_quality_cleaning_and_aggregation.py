@@ -1,9 +1,9 @@
 import numpy as np
 import pandas as pd
 
-inf_mor = pd.read_csv('../data/cleaned/infant_mortality.csv')
+# inf_mor = pd.read_csv('../data/cleaned/infant_mortality.csv')
 
-def air_data_cleaning(df, year, write_to, df2=inf_mor,):
+def air_data_cleaning(df, year, write_to, df2):
     '''
     DocString
     '''
@@ -30,7 +30,7 @@ def air_data_cleaning(df, year, write_to, df2=inf_mor,):
     df.insert(loc=0, column='Year', value=year)
     df.to_csv(write_to)
 
-def append_dataframes(df_list, write_to):
+def append_dataframes(df_list, write_to, keep_index=False):
     '''
     DOCSTRING
     '''
@@ -38,7 +38,7 @@ def append_dataframes(df_list, write_to):
     for dataframe in df_list[1:]:
         df = df.append(dataframe)
     df.reset_index(inplace=True, drop=True)
-    df.to_csv(write_to, index=False)
+    df.to_csv(write_to, index=keep_index)
 
 def get_data_by_location_then_transpose(df, location, write_to):
     df = df.loc[df['Location'] == location]
@@ -54,6 +54,8 @@ def add_infant_mortality_row(file_location, other_df, row_name, new_row_name):
     df.to_csv(file_location)
 
 if __name__ == '__main__': 
+
+    
 
     #### WRITE CLEANED DATA TO CSV FOR EACH YEAR ####
 
@@ -170,8 +172,8 @@ if __name__ == '__main__':
     # print(new_york)
 
     #### ADD INFANT MORTALITY METRICS TO MEAN AND QUARTILE DATA ####
-    add_infant_mortality_row('../data/cleaned/means.csv', inf_mor, 'Infant Mortality Mean', 'Infant Mortality')
-    add_infant_mortality_row('../data/cleaned/q1.csv', inf_mor, 'Infant Mortality First Quartile', 'Infant Mortality')
-    add_infant_mortality_row('../data/cleaned/median.csv', inf_mor, 'Infant Mortality Median', 'Infant Mortality')
-    add_infant_mortality_row('../data/cleaned/q3.csv', inf_mor, 'Infant Mortality Third Quartile', 'Infant Mortality')
+    # add_infant_mortality_row('../data/cleaned/means.csv', inf_mor, 'Infant Mortality Mean', 'Infant Mortality')
+    # add_infant_mortality_row('../data/cleaned/q1.csv', inf_mor, 'Infant Mortality First Quartile', 'Infant Mortality')
+    # add_infant_mortality_row('../data/cleaned/median.csv', inf_mor, 'Infant Mortality Median', 'Infant Mortality')
+    # add_infant_mortality_row('../data/cleaned/q3.csv', inf_mor, 'Infant Mortality Third Quartile', 'Infant Mortality')
 
