@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import itertools
 import scipy.stats as stats
 import seaborn as sns
+from pandas
 
 plt.style.use('seaborn-darkgrid')
 palette = itertools.cycle(sns.color_palette())
@@ -22,8 +23,8 @@ def plot_lines(df, metrics, ax_titles, y_labels, title, write_to):
     fig.suptitle(title, x=.52, y=.99, size=24)
     plt.xticks(rotation=60, fontsize=16)
     fig.tight_layout()
-    # plt.savefig(write_to)
-    plt.show()
+    plt.savefig(write_to)
+    # plt.show()
 
 def plot_ranges(dfs, metrics, ax_titles, y_labels, title, write_to):
     '''
@@ -49,8 +50,8 @@ def plot_ranges(dfs, metrics, ax_titles, y_labels, title, write_to):
     fig.suptitle(title, x=.52, y=.99, size=24)
     plt.xticks(rotation=60, fontsize=16)
     fig.tight_layout()
-    # plt.savefig(write_to)
-    plt.show()
+    plt.savefig(write_to)
+    # plt.show()
 
 
 def get_pvalue_bar(df, write_to):
@@ -71,6 +72,7 @@ def get_pvalue_bar(df, write_to):
     plt.yticks(fontsize=16)
     fig.tight_layout()
     plt.savefig(write_to)
+    # plt.show()
 
 
 if __name__ == '__main__':
@@ -103,4 +105,4 @@ if __name__ == '__main__':
     # plot_ranges([q1, medians, q3], metrics, titles, y_labels, title, '../images/inner_quartile.png')
     
     all_cities_corr = pd.read_csv('../data/cleaned/all_cities_correlation.csv')
-    get_pvalue_bar(all_cities_corr, '../images/corr_sig_rates.png')
+    # get_pvalue_bar(all_cities_corr, '../images/corr_sig_rates.png')

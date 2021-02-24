@@ -50,3 +50,5 @@
     - highlight negatively sloped trendline across all featured metrics as well as infant mortality
 
 ![NYC Air Pollution and Health Outcomes](./images/nyc_plots.png)
+
+![p-value Significance Rate](./images/corr_sig_rates.png)

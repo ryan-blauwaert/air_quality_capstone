@@ -36,9 +36,6 @@ def correlation_by_city(air_df, inf_mor_df):
     return city_dfs
 
 
-# def get_pollutant_pvalue_hist(df, metric, ax, bins):
-#     data = [df.loc[]]
-
 if __name__ == '__main__':
 
     np.seterr(divide='ignore')
