@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import itertools
 import scipy.stats as stats
 import seaborn as sns
-from pandas
 
 plt.style.use('seaborn-darkgrid')
 palette = itertools.cycle(sns.color_palette())
@@ -107,3 +106,8 @@ if __name__ == '__main__':
     all_cities_corr = pd.read_csv('../data/cleaned/all_cities_correlation.csv')
     # get_pvalue_bar(all_cities_corr, '../images/corr_sig_rates.png')
     
+    denver = pd.read_csv('../data/cleaned/denver.csv', index_col='Unnamed: 0')
+    metrics = ['CO 2nd Max 1-hr', 'SO2 2nd Max 24-hr', 'Ozone 4th Max 8-hr', 'PM2.5 98th Percentile 24-hr',
+     'Infant Mortality Rate']
+    title = 'Denver Air Pollution and Infant Mortality'
+    plot_lines(denver, metrics, titles, y_labels, title, '../images/denver.png')

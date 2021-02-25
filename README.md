@@ -1,7 +1,8 @@
-# Title
+# United States Air Pollution and Health
 ### Ryan Blauwaert
 
 ## Background
+    palette = itertools.cycle(sns.color_palette())
 * State the practical application of this analysis
 * Describe the difficulty of measuring the effects of air pollution
 * Pinpoint health outcomes as focus of analysis
@@ -50,5 +51,7 @@
     - highlight negatively sloped trendline across all featured metrics as well as infant mortality
 
 ![NYC Air Pollution and Health Outcomes](./images/nyc_plots.png)
+
+![Denver Air Pollution and Infant Mortality](./images/denver.png)
 
 ![p-value Significance Rate](./images/corr_sig_rates.png)
