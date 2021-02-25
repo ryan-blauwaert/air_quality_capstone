@@ -54,7 +54,7 @@ While not visually impactful, this process allowed me to gain a better understan
 
 
 ## Visualizations
-![National Air Pollution and Infant Mortality](./images/inner_quartile.png)
+![National Air Pollution and Infant Mortality](./images/interquartile.png)
 
 * National data inner quartile range
     - highlight negatively sloped trendline across all featured metrics as well as infant mortality
@@ -66,7 +66,6 @@ While not visually impactful, this process allowed me to gain a better understan
 ![Denver Air Pollution and Infant Mortality](./images/denver.png)
 
 ![Denver Correlation and Significance](./images/denver_corr_sig.png)
-
 
 ![p-value Significance Rate](./images/corr_sig_rates.png)
 
