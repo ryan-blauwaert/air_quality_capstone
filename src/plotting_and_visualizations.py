@@ -106,3 +106,4 @@ if __name__ == '__main__':
     
     all_cities_corr = pd.read_csv('../data/cleaned/all_cities_correlation.csv')
     # get_pvalue_bar(all_cities_corr, '../images/corr_sig_rates.png')
+    

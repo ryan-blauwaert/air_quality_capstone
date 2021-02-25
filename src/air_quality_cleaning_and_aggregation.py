@@ -177,3 +177,7 @@ if __name__ == '__main__':
     # add_infant_mortality_row('../data/cleaned/median.csv', inf_mor, 'Infant Mortality Median', 'Infant Mortality')
     # add_infant_mortality_row('../data/cleaned/q3.csv', inf_mor, 'Infant Mortality Third Quartile', 'Infant Mortality')
 
+    all_air = pd.read_csv('../data/cleaned/air_all_years.csv')
+    # get_data_by_location_then_transpose(all_air, 'Denver', '../data/cleaned/denver.csv')
+    add_infant_mortality_row('../data/cleaned/denver.csv', inf_mor, 'Denver', 
+    'Infant Mortality Rate')
