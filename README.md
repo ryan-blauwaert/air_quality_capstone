@@ -1,14 +1,17 @@
-# United States Air Pollution and Health
+# Air Pollution and its Health Effects in the United States
 ### Ryan Blauwaert
+![Header](./images/header_photo.jpeg)
 
 ## Background
-    palette = itertools.cycle(sns.color_palette())
+---
+For centuries, air pollution has been an accepted consequence of productivity and economic developent. Only in the last few decades have we begun to understand the 
 * State the practical application of this analysis
 * Describe the difficulty of measuring the effects of air pollution
 * Pinpoint health outcomes as focus of analysis
 * Describe the rationale behind using infant mortality and child asthma hospitalization rates as a proxy for the health effects on the general population
 
 ## The Data
+The U.S. Environmental Protection Agency (EPA) collects and compiles air quality metrics
 * Air pollutant data
     - comes from the EPA
     - give number of metrics in data; describe as annual averages adjusted for seasonal fluctuation
@@ -24,9 +27,9 @@
 
 ## Questions
 * Is there a statistically significant correlation between air quality and infant mortality?
-* Is there a statistically significant correlation between air quality and asthma hospitalizations
-* Which, if any, air pollutants are most positively correlated with health outcomes
-* Can any conclusions be extended to the health outcomes of the general population?
+* Is there a statistically significant correlation between air quality and asthma hospitalizations in New York City?
+* Which, if any, air pollutants are most positively correlated with health outcomes?
+* Based on the concentrations of significantly correlated pollutants, can an individual who values their respiratory health make an informed decision regarding where to live?
 
 ## Cleaning the Data
 * Describe goals of cleaning:
