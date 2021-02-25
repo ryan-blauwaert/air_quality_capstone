@@ -73,6 +73,31 @@ def get_pvalue_bar(df, write_to):
     plt.savefig(write_to)
     # plt.show()
 
+def get_colors(df, column):
+    color_lst = []
+    for val in df[column]:
+        if val:
+            color_lst.append('blue')
+        else:
+            color_lst.append('red')
+    return color_lst
+
+def get_corr_bar(df, color_col, title, write_to):
+    fig, ax = plt.subplots(figsize=(12, 8))
+    color_lst = get_colors(df, color_col)
+    colors = {'Not Significant':'red', 'Significant':'blue'}         
+    labels = list(colors.keys())
+    handles = [plt.Rectangle((0,0),1,1, color=colors[label]) for label in labels]
+    ax.barh(df['index'], df['Correlation Coefficient'], color=color_lst)
+    ax.set_title(title, size=32, x=.4)
+    ax.set_ylabel('Metric', size=20)
+    ax.set_xlabel('Correlation Coefficient', size=20)
+    ax.legend(handles, labels, fontsize=14)
+    plt.xticks(fontsize=16)
+    plt.yticks(fontsize=16)
+    fig.tight_layout()
+    plt.savefig(write_to)
+    # plt.show()
 
 if __name__ == '__main__':
     

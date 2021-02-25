@@ -38,21 +38,20 @@ Questions of particular interest for this analysis are:
 ## Exploratory Data Analysis
 ### Cleaning the Data
 Cleaning and organizing this collection of data proved to be particularly challenging for a number of reasons. Here, I'd like to briefly highlight a few of these challenges and offer an explanation for how each was addressed. 
-- Formatting of data from each sources was wildly different 
-    - Location names had to be standardized 
-    - address null values
-    - narrow scope of study to only major US cities
-* Challenges in cleaning data:
-    - Data coming from three unrelated sources, therefore data is in particularly disparate formats
-    - standardize location names to act as indices
-    - infant mortality data contained a gap; no data in 2007, 2008. Describe how this was addressed
-    - describe transposition of data from one source to match the format of the others
+- Formatting of data from each source was significantly different: 
+    - Location names had to be standardized via numerous string operations for the sake of consistency 
+    - Air quality data needed to be transposed so that its columns would match those of the infant mortality and asthma datasets
+- Missing Values
+    - Air quality data contained a significant proportion of missing and non-numeric values which were converted to `np.nan` values for ease of mathematical operations
+    - Infant mortality data was missing values for all but one city in 2007 and 2008
+        - This caused mean values to skew wildly for these years and, left unaddressed, would have resulted in significant issues when studying correlation
+        - Values were input for these columns using a linear connection between 2006 and 2009 values to minimize any skew caused by this missing data
+### Visualizing the Data
+Initially, my goal was to see if there are any visible trends in air quality and/or infant mortality rates over time. Because the data is extensive, I started by using a simple boxplot comparison 1999, 2009, 2018 distribution of each pollutant. An example of a typical result is seen below:
+![EDA boxplot example](./images/eda_boxplot_example.png)
+While not visually impactful, this process allowed me to gain a better understanding ot the trends I could expect for each pollutant. 
 
-## EDA 
-* Look for outliers??
-* Show line graphs with all metrics included
-    - describe need to narrow focus to a few metrics only
-* correlation matrix of pollutants vs pollutants (use means?)
+
 
 ## Visualizations
 ![National Air Pollution and Infant Mortality](./images/inner_quartile.png)
@@ -62,7 +61,12 @@ Cleaning and organizing this collection of data proved to be particularly challe
 
 ![NYC Air Pollution and Health Outcomes](./images/nyc_plots.png)
 
+![NYC Correlation and Significance](./images/nyc_corr_sig.png)
+
 ![Denver Air Pollution and Infant Mortality](./images/denver.png)
+
+![Denver Correlation and Significance](./images/denver_corr_sig.png)
+
 
 ![p-value Significance Rate](./images/corr_sig_rates.png)
 
