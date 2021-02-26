@@ -50,7 +50,9 @@ Cleaning and organizing this collection of data proved to be particularly challe
 
 ### Visualizing the Data
 Initially, my goal was to see if there are any visible trends in air quality and/or infant mortality rates over time. Because the data is extensive, I started by using a simple boxplot comparison of the distribution of each pollutant in 1999, 2009, and 2018. An example of a typical result is seen below:
+
 ![EDA boxplot example](./images/eda_boxplot_example.png)
+
 While not visually impactful, this process allowed me to gain a cursory understanding of the trends I could expect for each pollutant.
 
 In order to better visualize the national trends, I decided to plot the concentrations of pollutants as well as infant mortality rates over the twenty years from 1999 to 2018. I used the 25th, 50th, and 75th percentiles for each metric, plotted together to show the interquartile range:
