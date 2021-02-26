@@ -102,6 +102,6 @@ Based on the air pollutant metrics included in this study, air quality appears t
 While no causal relationship between air quality and public health can be inferred based on this study, it may be used as basis for further research. Given the findings in the 'Rate of Correlation Significance by Metric' figure shown above, policy-makers and firms concerned with reducing environmental damages should further investigate PM2.5 Particle Matter, Sulfur Dioxide, and Nitrogen Dioxide. Additionally, this figure shows that *mean* pollutant concentrations are more often significantly correlated with health outcomes than are short-term maxima. Again, further scientific study should be conducted to determine if any causality exists. 
 
 ## Citations
-- Air quality - cities and counties. (2020, June 08). Retrieved February 16, 2021, from https://www.epa.gov/air-trends/air-quality-cities-and-counties
+- Outdoor Air Quality Data. (2020, June 08). Retrieved February 16, 2021, from https://www.epa.gov/outdoor-air-quality-data/air-quality-statistics-report
 - Infant mortality: Kids count data center. Retrieved February 17, 2021, from https://datacenter.kidscount.org/data/tables/6051-infant-mortality
 - Keeping Track Online - Asthma Hospitalizations. Retrieved February 17, 2021, from https://data.cccnewyork.org/data/table/7/asthma-hospitalizations

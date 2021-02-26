@@ -13,26 +13,21 @@ def get_pvalue_from_corr(r, n):
     return t.sf(abs(t_stat), df=n-2)
 
 
-def correlation_by_city(air_df, inf_mor_df, n):
-    inf_mor.columns = inf_mor.columns.astype(int)
-    city_dfs = []
-    for city in air_df.index.unique():
-        if city not in ['National Means', 'National First Quartile', 'National Median', 'National Third Quartile']:
-            df = air_df.loc[city]
-            df.set_index('Year', drop=True, inplace=True)
-            df = df.transpose()
-            df = df.append(inf_mor_df.loc[city])
-            df = df.rename(index={city:'Infant Mortality'})
-            df.drop(index='Lead Max 3-Mo Avg', inplace=True)
-            corr = df.corrwith(df.loc['Infant Mortality'], axis=1)
-            corr = pd.DataFrame(data=corr, columns=['Correlation Coefficient'])
-            corr.drop(index='Infant Mortality', inplace=True)
-            corr.reset_index(inplace=True)
-            corr.insert(0, 'Location', city)
-            corr['p-value'] = get_pvalue_from_corr(corr['Correlation Coefficient'], n)
-            corr['Significant?'] = corr['p-value'] <= .025
-            city_dfs.append(corr)
-    return city_dfs
+def correlation_by_city(df1, df2, location, n, alpha):
+    df = df1.loc[location]
+    df.set_index('Year', drop=True, inplace=True)
+    df = df.transpose()
+    df = df.append(df2.loc[location])
+    df = df.rename(index={location:'Infant Mortality'})
+    df.drop(index='Lead Max 3-Mo Avg', inplace=True)
+    corr = df.corrwith(df.loc['Infant Mortality'], axis=1)
+    corr = pd.DataFrame(data=corr, columns=['Correlation Coefficient'])
+    corr.drop(index='Infant Mortality', inplace=True)
+    corr.reset_index(inplace=True)
+    corr.insert(0, 'Location', location)
+    corr['p-value'] = get_pvalue_from_corr(corr['Correlation Coefficient'], n)
+    corr['Significant?'] = corr['p-value'] <= alpha/2
+    return corr
 
 
 if __name__ == '__main__':
@@ -42,11 +37,18 @@ if __name__ == '__main__':
     all_air = pd.read_csv('../data/cleaned/air_all_years.csv', index_col='Location')
     inf_mor = pd.read_csv('../data/cleaned/infant_mortality_plus_stats.csv', index_col='Location')
 
+    inf_mor.columns = [int(col) for col in inf_mor.columns]
+    ignore = ['National Means', 'National First Quartile', 'National Median',
+    'National Third Quartile']
 
-    city_df_lists = correlation_by_city(all_air, inf_mor)
-    # print(city_df_lists[5])
+    corr_df_lst = []
 
-    # append_dataframes(city_df_lists, '../data/cleaned/all_cities_correlation.csv')
+    for location in all_air.index.unique():
+        if location not in ignore:
+            df = correlation_by_city(all_air, inf_mor, location, 20, .05)
+            corr_df_lst.append(df)
 
-    all_cities_corr = pd.read_csv('../data/cleaned/all_cities_correlation.csv')
+    # print(corr_df_lst[0])
+
+    append_dataframes(corr_df_lst, '../data/cleaned/all_cities_correlation_1.csv')
     
