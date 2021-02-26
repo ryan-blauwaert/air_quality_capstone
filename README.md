@@ -4,7 +4,7 @@
 
 ## Background
 
-Reducing air pollution is extremely costly. In 2005, the Environmental Protection Agency estimated firms across the U.S spent $20.7 billion on pollution abatement. As the public increases its    In order to better allocate funds for pollution abatement, we need to understand which pollutants have the largest effects on public health. By analyzing the prevalence of several air pollutants across major U.S. cities as well as public health outcomes in these cities, we may be able to .....
+Reducing air pollution is extremely costly. In 2005, the Environmental Protection Agency estimated firms across the U.S spent $20.7 billion on pollution abatement. As the public increases its    In order to better allocate funds for pollution abatement, we need to understand which pollutants have the largest effects on public health. By analyzing the prevalence of several air pollutants across major U.S. cities as well as health outcomes in these cities, we may be able to simultaneously save money and improve public health.
 
 Measuring the health effects of pollution is inherently difficult. The consequences of exposure to low-quality air may take decades, if not a lifetime, to manifest in an otherwise healthy adult. Additionally, these effects are often masked by other factors (e.g. occupational hazards, cigarette smoking). One way to minimize these difficulties is to study the health of infants or children, for whom environmental factors comprise a larger proportion of health risk. In the analysis that follows, I will be exploring the relationships between air quality, infant mortality, and asthma hospitalizations. 
 
@@ -37,6 +37,7 @@ Questions of particular interest for this analysis are:
 
 ## Exploratory Data Analysis
 ### Cleaning the Data
+
 Cleaning and organizing this collection of data proved to be particularly challenging for a number of reasons. Here, I'd like to briefly highlight a few of these challenges and offer an explanation for how each was addressed. 
 - Formatting of data from each source was significantly different: 
     - Location names had to be standardized via numerous string operations for the sake of consistency 
@@ -46,6 +47,7 @@ Cleaning and organizing this collection of data proved to be particularly challe
     - Infant mortality data was missing values for all but one city in 2007 and 2008
         - This caused mean values to skew wildly for these years and, left unaddressed, would have resulted in significant issues when studying correlation
         - Values were input for these columns using a linear connection between 2006 and 2009 values to minimize any skew caused by this missing data
+
 ### Visualizing the Data
 Initially, my goal was to see if there are any visible trends in air quality and/or infant mortality rates over time. Because the data is extensive, I started by using a simple boxplot comparison 1999, 2009, 2018 distribution of each pollutant. An example of a typical result is seen below:
 ![EDA boxplot example](./images/eda_boxplot_example.png)
@@ -95,8 +97,11 @@ The figure below shows the rate at which each pollution metric was found to be s
 
 ## Conclusions
 
-Based on the air pollutant metrics included in this study, air quality appears to be improving across the United States. That said, air quality trends are highly variable between cities. In terms of correlation between air pollutant concentrations and public health, the results are inconclusive. In some cities, like New York, there is a statistically significant correlation between many air pollutants and infant mortality, while in others, like Denver, this is not the case. 
+Based on the air pollutant metrics included in this study, air quality appears to be improving across the United States. That said, air quality trends are highly variable between cities. In terms of correlation between air pollutant concentrations and public health, the results are inconclusive. In some cities, like New York, there is a statistically significant correlation between many air pollutants and infant mortality, while in others, like Denver, this is not the case. One possible explanation for this could be that in some U.S. cities, other factors (e.g. socioeconomic) dilute and/or overpower any correlative relationship between air quality and infant mortality. 
 
-## Directions for Further Research
+While no causal relationship between air quality and public health can be inferred based on this study, it may be used as basis for further research. Given the findings in the 'Rate of Correlation Significance by Metric' figure shown above, policy-makers and firms concerned with reducing environmental damages should further investigate PM2.5 Particle Matter, Sulfur Dioxide, and Nitrogen Dioxide. Additionally, this figure shows that *mean* pollutant concentrations are more often significantly correlated with health outcomes than are short-term maxima. Again, further scientific study should be conducted to determine if any causality exists. 
 
-## Acknowledgements
+## Citations
+- Air quality - cities and counties. (2020, June 08). Retrieved February 16, 2021, from https://www.epa.gov/air-trends/air-quality-cities-and-counties
+- Infant mortality: Kids count data center. Retrieved February 17, 2021, from https://datacenter.kidscount.org/data/tables/6051-infant-mortality
+- Keeping Track Online - Asthma Hospitalizations. Retrieved February 17, 2021, from https://data.cccnewyork.org/data/table/7/asthma-hospitalizations

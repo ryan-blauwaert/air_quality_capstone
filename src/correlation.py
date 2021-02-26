@@ -13,10 +13,9 @@ def get_pvalue_from_corr(r, n):
     return t.sf(abs(t_stat), df=n-2)
 
 
-def correlation_by_city(air_df, inf_mor_df):
+def correlation_by_city(air_df, inf_mor_df, n):
     inf_mor.columns = inf_mor.columns.astype(int)
     city_dfs = []
-    n=20
     for city in air_df.index.unique():
         if city not in ['National Means', 'National First Quartile', 'National Median', 'National Third Quartile']:
             df = air_df.loc[city]

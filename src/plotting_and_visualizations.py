@@ -23,7 +23,7 @@ def plot_lines(df, metrics, ax_titles, y_labels, title, write_to):
     plt.xticks(rotation=60, fontsize=16)
     fig.tight_layout()
     plt.savefig(write_to)
-    # plt.show()
+    
 
 def plot_ranges(dfs, metrics, ax_titles, y_labels, title, write_to):
     '''
@@ -50,7 +50,6 @@ def plot_ranges(dfs, metrics, ax_titles, y_labels, title, write_to):
     plt.xticks(rotation=60, fontsize=16)
     fig.tight_layout()
     plt.savefig(write_to)
-    # plt.show()
 
 
 def get_pvalue_bar(df, write_to):
@@ -71,7 +70,6 @@ def get_pvalue_bar(df, write_to):
     plt.yticks(fontsize=16)
     fig.tight_layout()
     plt.savefig(write_to)
-    # plt.show()
 
 def get_colors(df, column):
     color_lst = []
@@ -97,7 +95,7 @@ def get_corr_bar(df, color_col, title, write_to):
     plt.yticks(fontsize=16)
     fig.tight_layout()
     plt.savefig(write_to)
-    # plt.show()
+
 
 if __name__ == '__main__':
     
