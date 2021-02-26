@@ -4,9 +4,21 @@ import pandas as pd
 # inf_mor = pd.read_csv('../data/cleaned/infant_mortality.csv')
 
 def air_data_cleaning(df, year, write_to, df2):
-    '''
-    DocString
-    '''
+    """Takes in a raw annual air quality DataFrame, cleans
+    location names, null values, and keeps only locations
+    which also occur in a second DataFrame
+
+    Args:
+        df (pandas DataFrame): air quality DataFrame which is to be
+            cleaned
+        year (int): year from which the data was collected; to be 
+            appended as a column
+        write_to (str): file location to which the function will 
+            write the cleaned data
+        df2 (pandas DataFrame): DataFrame against which the locations
+            in df will be compared; locations not in this DataFrame 
+            will be dropped
+    """
     numeric_cols = df.columns[2:]
     df[numeric_cols] = df[numeric_cols].replace('.', np.nan)
     for col in numeric_cols:
@@ -31,9 +43,17 @@ def air_data_cleaning(df, year, write_to, df2):
     df.to_csv(write_to)
 
 def append_dataframes(df_list, write_to, keep_index=False):
-    '''
-    DOCSTRING
-    '''
+    """Appends dataframes of the same width together and writes
+    the resulting data to a file location
+
+    Args:
+        df_list (arr): array of DataFrames to be appended
+        write_to (str): file location to which the resulting 
+            DataFrame will be written
+        keep_index (bool, optional): Determines whether the 
+            index from the original DataFrames will be kept.
+            Defaults to False.
+    """
     df = df_list[0]
     for dataframe in df_list[1:]:
         df = df.append(dataframe)
@@ -41,6 +61,17 @@ def append_dataframes(df_list, write_to, keep_index=False):
     df.to_csv(write_to, index=keep_index)
 
 def get_data_by_location_then_transpose(df, location, write_to):
+    """Groups data from a DataFrame by location, then transposes
+    the indices and columns
+
+    Args:
+        df (pandas DataFrame): DataFrame from which a subset is to 
+            be taken
+        location (str): specifies the location for which data is to
+            be grouped and transposed
+        write_to (str): file locaiton to which the resulting DataFrame
+            is to be written
+    """
     df = df.loc[df['Location'] == location]
     df.set_index('Year', inplace=True)
     df = df.transpose()
@@ -48,6 +79,18 @@ def get_data_by_location_then_transpose(df, location, write_to):
     df.to_csv(write_to)
 
 def add_infant_mortality_row(file_location, other_df, row_name, new_row_name):
+    """Appends a row containing infant mortality data from a 
+    secondary location to a csv file
+
+    Args:
+        file_location (str): file location of the csv file to which the 
+            row of data is to be added
+        other_df (pandas DataFrame): DataFrame containing the row which
+            is to be added to the csv file
+        row_name (str): index of the row which is to be added
+        new_row_name (str): new index which is to be used in the csv
+            file
+    """
     df = pd.read_csv(file_location, index_col='Unnamed: 0')
     df = df.append(other_df.loc[row_name])
     df = df.rename(index={row_name: new_row_name})

@@ -10,13 +10,36 @@ colors = sns.color_palette()
 
 
 def plot_metric_line(df, metric, ax, color, label):
-    '''
-    DOCSTRING
-    '''
+    """Uses pyplot's .plot method to plot a single line on a given axis
+
+    Args:
+        df (pandas DataFrame): DataFrame from which the columns will be
+            used as the x-array 
+        metric (str): Row index in df which will generate the y-array
+        ax (Axes): The axes on which to plot the line
+        color (str): The color in which to plot the line
+        label (str): Label which will appear when .legend() method is 
+            called
+    """
     ax.plot(df.columns, df.loc[metric], color=colors[i], lw=3, label=label)
     
 
 def get_colors(df, location, column):
+    """Creates an array of colors for plotting based on boolean
+    values in a particular column
+
+
+    Args:
+        df (pandas DataFrame): DataFrame from which the boolean
+            values will be taken
+        location (str): specifies the row indices from which 
+            boolean values will be taken
+        column (str): specifies the column index from which 
+            boolean values will be taken
+
+    Returns:
+        [arr]: returns an array of strings 'red' and 'blue'
+    """
     df = df.loc[location]
     color_lst = []
     for val in df[column]:
@@ -28,6 +51,18 @@ def get_colors(df, location, column):
 
 
 def get_corr_bar(df, location, ax, color_col):
+    """Generates a horizontal bar graph showing correlation
+    coefficients and their significance 
+
+    Args:
+        df (pandas DataFrame): DataFrame from which the correlation
+            coefficients and significance will be taken
+        location (str): specifies the row indices from which 
+            correlation coefficients and significance will be taken
+        ax (Axes): Axes on which to plot the bars
+        color_col (str): specifies the column from which boolean
+            values will be taken to generate a color list
+    """
     df = df.loc[location]
     color_lst = get_colors(df, location, color_col)
     colors_dict = {'Not Significant':'red', 'Significant':'blue'}         
@@ -40,6 +75,20 @@ def get_corr_bar(df, location, ax, color_col):
 
 
 def get_pvalue_bar(df, ax, y_vals, widths):
+    """Plots a horizontal bar chart on an axes showing the 
+    rates at which correlation is found to be significant
+
+
+    Args:
+        df (pandas DataFrame): DataFrame containing all correlation
+            and significance data for locations to be aggregated
+        ax (Axes): axes on which to plot the bars
+        y_vals (arr): array of metrics for which the correlation was 
+            calculated
+        widths (arr): array of the count of times each metric in 
+            y_vals was found to be significant divided by the 
+            count of times its significance was assessed
+    """
     d = {'metrics':y_vals, 'significance ratio':widths}
     df = pd.DataFrame(data=d)
     df = df.sort_values('significance ratio', ascending=True)
@@ -70,7 +119,7 @@ if __name__ == '__main__':
     fig.suptitle(title, x=.52, y=.99, size=24)
     plt.xticks(rotation=60, fontsize=16)
     fig.tight_layout()
-    plt.savefig('../images/nyc_plots_1.png')
+    # plt.savefig('../images/nyc_plots.png')
     plt.show()
 
 
@@ -108,10 +157,11 @@ if __name__ == '__main__':
     fig.suptitle(title, x=.52, y=.99, size=24)
     plt.xticks(rotation=60, fontsize=16)
     fig.tight_layout()
-    plt.savefig('../images/interquartile_1.png')
+    # plt.savefig('../images/interquartile.png')
     plt.show()
 
-    all_cities_corr = pd.read_csv('../data/cleaned/all_cities_correlation_1.csv', index_col='Location')
+    all_cities_corr = pd.read_csv('../data/cleaned/all_cities_correlation_1.csv', 
+    index_col='Location')
 
     # print(all_cities_corr.head())
 
@@ -123,7 +173,7 @@ if __name__ == '__main__':
     plt.xticks(fontsize=16)
     plt.yticks(fontsize=16)
     fig.tight_layout()
-    plt.savefig('../images/denver_corr_sig_1.png')
+    # plt.savefig('../images/denver_corr_sig.png')
     plt.show()
 
 
@@ -135,7 +185,7 @@ if __name__ == '__main__':
     plt.xticks(fontsize=16)
     plt.yticks(fontsize=16)
     fig.tight_layout()
-    plt.savefig('../images/asthma_corr_sig_1.png')
+    # plt.savefig('../images/asthma_corr_sig.png')
     plt.show()
 
 
@@ -143,9 +193,10 @@ if __name__ == '__main__':
     y_vals = all_cities_corr['index'].unique()
     widths = []
     for metric in y_vals:
-        data = all_cities_corr.loc[all_cities_corr['index']==metric, 'Significant?']
+        data = all_cities_corr.loc[all_cities_corr['index']==metric, 
+        'Significant?']
         widths.append(sum(data)/len(data))
     get_pvalue_bar(all_cities_corr, ax, y_vals, widths)
     fig.tight_layout()
-    plt.savefig('../images/corr_sig_rates_1.png')
+    # plt.savefig('../images/corr_sig_rates.png')
     plt.show()

@@ -9,11 +9,40 @@ plt.style.use('seaborn-darkgrid')
 
 
 def get_pvalue_from_corr(r, n):
+    """Calculates a p-value using a two tailed t-test with 
+    n-2 degrees of freedom
+
+    Args:
+        r (float): Pearson correlation coefficient
+        n (int): number of samples used to calculate r
+
+    Returns:
+        [float]: p-value
+    """
     t_stat = (r*(np.sqrt(n-2)))/(np.sqrt(1-r**2))
     return t.sf(abs(t_stat), df=n-2)
 
 
 def correlation_by_city(df1, df2, location, n, alpha):
+    """Combines data from two pandas DataFrames to provide 
+    correlation coefficients, p-values, and significance
+    for air quality metrics and health outcomes
+
+    Args:
+        df1 (pandas DataFrame): DataFrame containing air quality 
+            data
+        df2 (pandas DataFrame): DataFrame containing health outcome 
+            data
+        location (str): the name of the city for which correlation, 
+            etc. is to be calculated
+        n (int): number of samples being used to calculate correlation
+            coefficient
+        alpha (float): significance level against which p-value is to 
+            be compared
+
+    Returns:
+        [type]: [description]
+    """
     df = df1.loc[location]
     df.set_index('Year', drop=True, inplace=True)
     df = df.transpose()
