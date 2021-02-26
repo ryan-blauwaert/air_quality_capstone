@@ -4,7 +4,7 @@
 
 ## Background
 
-Reducing air pollution is extremely costly. In 2005, the Environmental Protection Agency estimated firms across the U.S spent $20.7 billion on pollution abatement. As the public increases its    In order to better allocate funds for pollution abatement, we need to understand which pollutants have the largest effects on public health. By analyzing the prevalence of several air pollutants across major U.S. cities as well as health outcomes in these cities, we may be able to simultaneously save money and improve public health.
+Reducing air pollution is extremely costly. In 2005, the Environmental Protection Agency estimated firms across the U.S. spent $20.7 billion on pollution abatement. As the public increases its awareness of environmental issues, we may expect increased demand for firms to reduce pollution. In order to better allocate funds for pollution abatement, we need to understand which pollutants have the largest effects on public health. By analyzing the prevalence of several air pollutants across major U.S. cities as well as health outcomes in these cities, we may be able to simultaneously save money and improve public health.
 
 Measuring the health effects of pollution is inherently difficult. The consequences of exposure to low-quality air may take decades, if not a lifetime, to manifest in an otherwise healthy adult. Additionally, these effects are often masked by other factors (e.g. occupational hazards, cigarette smoking). One way to minimize these difficulties is to study the health of infants or children, for whom environmental factors comprise a larger proportion of health risk. In the analysis that follows, I will be exploring the relationships between air quality, infant mortality, and asthma hospitalizations. 
 
@@ -49,11 +49,11 @@ Cleaning and organizing this collection of data proved to be particularly challe
         - Values were input for these columns using a linear connection between 2006 and 2009 values to minimize any skew caused by this missing data
 
 ### Visualizing the Data
-Initially, my goal was to see if there are any visible trends in air quality and/or infant mortality rates over time. Because the data is extensive, I started by using a simple boxplot comparison 1999, 2009, 2018 distribution of each pollutant. An example of a typical result is seen below:
+Initially, my goal was to see if there are any visible trends in air quality and/or infant mortality rates over time. Because the data is extensive, I started by using a simple boxplot comparison of the distribution of each pollutant in 1999, 2009, and 2018. An example of a typical result is seen below:
 ![EDA boxplot example](./images/eda_boxplot_example.png)
 While not visually impactful, this process allowed me to gain a cursory understanding of the trends I could expect for each pollutant.
 
-In order to better visualize the national trends, I decided to plot the concentrations of pollutants as well as infant mortality rates over the twenty years from 1999 to 2018. I used the 25th, 50th, and 75th percentiles for each metric, plotted together to show its interquartile range:
+In order to better visualize the national trends, I decided to plot the concentrations of pollutants as well as infant mortality rates over the twenty years from 1999 to 2018. I used the 25th, 50th, and 75th percentiles for each metric, plotted together to show the interquartile range:
 
 ![National Air Pollution and Infant Mortality](./images/interquartile.png)
 
