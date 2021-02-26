@@ -11,7 +11,7 @@ Measuring the health effects of pollution is inherently difficult. The consequen
 ## The Data
 The data used in this analysis comes from three primary sources:
 1. **The U.S. Environmental Protection Agency (EPA)**
-    - From the [EPA website](https://www.epa.gov/outdoor-air-quality-data/air-quality-statistics-report), I gathered twenty csv files, each containing air quality data from a single year.
+    - From the [EPA website](https://www.epa.gov/outdoor-air-quality-data/air-quality-statistics-report), I gathered twenty csv files, each containing air quality data from a single year
     - Each csv file contains metrics from approx. 500 locations across the U.S.
     - Air quality metrics include:
         - Carbon Monoxide concentration, ppm
@@ -23,17 +23,17 @@ The data used in this analysis comes from three primary sources:
         - Data from approx. 50 U.S. cities tracking infant mortality trends from 1999 to 2018
         - Data is provided as both raw quantities and infant mortality rate per 1,000 births
 3. **Citizens' Committee for Children of New York (CCC)**
-    - The [CCC website](https://data.cccnewyork.org/data/table/7/asthma-hospitalizations#7/12/20/a/a) provides data regarding asthma-related hospitalizations of children in New York City.
-        - This data is split between children ages 0-4 and children ages 5-17.
-        - For consistency with infant mortality rates, only data from the 0-4 years age group will be used. 
+    - The [CCC website](https://data.cccnewyork.org/data/table/7/asthma-hospitalizations#7/12/20/a/a) provides data regarding asthma-related hospitalizations of children in New York City
+        - This data is split between children ages 0-4 and children ages 5-17
+        - For consistency with infant mortality rates, only data from the 0-4 years age group will be used
+        - Rates shown are hospitalizations per 10,000 children in the age range
 
 ## Questions
 Questions of particular interest for this analysis are:
 1. Are there any overall air quality trends which can be seen across the U.S.?
 2. Is there a statistically significant correlation between air quality and infant mortality?
 3. Is there a statistically significant correlation between air quality and asthma hospitalizations in New York City?
-4. Which, if any, air pollutants are most positively correlated with health outcomes?
-5. Based on the concentrations of significantly correlated pollutants, can an individual who values their respiratory health make an informed decision regarding where to live?
+4. Which, if any, air pollutants are most often significantly correlated with health outcomes?
 
 ## Exploratory Data Analysis
 ### Cleaning the Data
@@ -49,27 +49,54 @@ Cleaning and organizing this collection of data proved to be particularly challe
 ### Visualizing the Data
 Initially, my goal was to see if there are any visible trends in air quality and/or infant mortality rates over time. Because the data is extensive, I started by using a simple boxplot comparison 1999, 2009, 2018 distribution of each pollutant. An example of a typical result is seen below:
 ![EDA boxplot example](./images/eda_boxplot_example.png)
-While not visually impactful, this process allowed me to gain a better understanding ot the trends I could expect for each pollutant. 
+While not visually impactful, this process allowed me to gain a cursory understanding of the trends I could expect for each pollutant.
 
+In order to better visualize the national trends, I decided to plot the concentrations of pollutants as well as infant mortality rates over the twenty years from 1999 to 2018. I used the 25th, 50th, and 75th percentiles for each metric, plotted together to show its interquartile range:
 
-
-## Visualizations
 ![National Air Pollution and Infant Mortality](./images/interquartile.png)
 
-* National data inner quartile range
-    - highlight negatively sloped trendline across all featured metrics as well as infant mortality
+**Good News!**
+Based on the negatively sloping interquartile ranges in the graphic above, it appears that the concentration of these pollutants is decreasing across the cities from which the metrics were collected. Additionally, it is interesting to note that the distribution of these pollutant concentrations is shrinking. One possible explanation for this could be that polluters are adhering more closely to national regulations as time goes on, though this hypothesis would require further research to test.
+
+Next, I looked at the trends of these same metrics in New York City, as well as the annual asthma hospitalization rate for children between the ages of 0 and 4.
 
 ![NYC Air Pollution and Health Outcomes](./images/nyc_plots.png)
 
+Again, we can see a generally negative trend for each of these metrics over time, despite a spike occuring around 2002. Asthma hospitalization data was not available for the year 2002 and therefore was not plotted. 
+
+I then calculated the correlation coefficient for each pollution metric with respect to infant mortality and then to asthma hospitalizations. For each of these correlation coefficients, I conducted a t-test to evaluate its significance. The conditions of the t-test were:
+- Null Hypothesis: The correlation between the two variables is not significant
+- Alternative Hypothesis: the correlation between the two variables is significant
+- An alpha value of 0.05 was selected as a threshold for significance
+- An n value of 20 was set based on the number of years used to calculate the correlation coefficient
+- A two-tailed test was conducted with n-2 degrees of freedom
+
+The correlation coefficients and their significance for each metric can be seen below:
+
 ![NYC Correlation and Significance](./images/nyc_corr_sig.png)
+
+![Asthma Correlation and Significance](./images/asthma_corr_sig.png)
+
+Based on the findings above, there is a statistically significant correlation between infant mortality and several pollutants, notably Sulfur Dioxide, Carbon Monoxide, and PM2.5 Particulate Matter. Additionally, all air quality metrics are significantly correlated with asthma hospitalizations, with the sole exception of Lead. 
+
+Does this level of significant correlation hold true for other U.S. cities? To find out, I followed the same steps for Denver, Colorado. The results can be seen below:
 
 ![Denver Air Pollution and Infant Mortality](./images/denver.png)
 
+The figure above shows that there is significantly more year-over-year variability in these air pollution metrics. Some appear to be trending downward, while others are too inconsistent for any trend to be assessed visually. However, it is important to note that infant mortality rates in Denver are *also* less consistent than in New York. Could the same levels of correlation and significance seen in New York hold true in Denver?
+
 ![Denver Correlation and Significance](./images/denver_corr_sig.png)
 
+Based on the same t-test conducted for New York, it appears that the answer is no. In fact, only one measure of Sulfur Dioxide is significantly correlated with infant mortality in this case. 
+
+The figure below shows the rate at which each pollution metric was found to be significant across all cities included in the study.
 ![p-value Significance Rate](./images/corr_sig_rates.png)
 
 
 ## Conclusions
 
+Based on the air pollutant metrics included in this study, air quality appears to be improving across the United States. That said, air quality trends are highly variable between cities. In terms of correlation between air pollutant concentrations and public health, the results are inconclusive. In some cities, like New York, there is a statistically significant correlation between many air pollutants and infant mortality, while in others, like Denver, this is not the case. 
+
 ## Directions for Further Research
+
+## Acknowledgements

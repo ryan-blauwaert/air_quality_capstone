@@ -64,9 +64,9 @@ def get_pvalue_bar(df, write_to):
     df = df.sort_values('significance ratio', ascending=True)
     fig, ax = plt.subplots(figsize=(12, 8))
     ax.barh(df['metrics'], df['significance ratio'], tick_label=df['metrics'])
-    ax.set_title('Rate of p-value Significance by Metric', size=32)
+    ax.set_title('Rate of Correlation Significance by Metric', size=32)
     ax.set_ylabel('Metric', fontsize=24)
-    ax.set_xlabel('Rate at which p-value is Significant', fontsize=24)
+    ax.set_xlabel('Rate at which Correlation is Significant', fontsize=24)
     plt.xticks(fontsize=16)
     plt.yticks(fontsize=16)
     fig.tight_layout()
@@ -85,9 +85,9 @@ def get_colors(df, column):
 def get_corr_bar(df, color_col, title, write_to):
     fig, ax = plt.subplots(figsize=(12, 8))
     color_lst = get_colors(df, color_col)
-    colors = {'Not Significant':'red', 'Significant':'blue'}         
-    labels = list(colors.keys())
-    handles = [plt.Rectangle((0,0),1,1, color=colors[label]) for label in labels]
+    colors_dict = {'Not Significant':'red', 'Significant':'blue'}         
+    labels = list(colors_dict.keys())
+    handles = [plt.Rectangle((0,0),1,1, color=colors_dict[label]) for label in labels]
     ax.barh(df['index'], df['Correlation Coefficient'], color=color_lst)
     ax.set_title(title, size=32, x=.4)
     ax.set_ylabel('Metric', size=20)
@@ -126,10 +126,10 @@ if __name__ == '__main__':
     q3 = pd.read_csv('../data/cleaned/q3.csv', index_col='Unnamed: 0')
 
     title = 'National Air Pollution and Infant Mortality Interquartile Range'
-    plot_ranges([q1, medians, q3], metrics, titles, y_labels, title, '../images/inner_quartile.png')
+    # plot_ranges([q1, medians, q3], metrics, titles, y_labels, title, '../images/inner_quartile.png')
     
     all_cities_corr = pd.read_csv('../data/cleaned/all_cities_correlation.csv')
-    # get_pvalue_bar(all_cities_corr, '../images/corr_sig_rates.png')
+    get_pvalue_bar(all_cities_corr, '../images/corr_sig_rates.png')
     
     denver = pd.read_csv('../data/cleaned/denver.csv', index_col='Unnamed: 0')
     metrics = ['CO 2nd Max 1-hr', 'SO2 2nd Max 24-hr', 'Ozone 4th Max 8-hr', 'PM2.5 98th Percentile 24-hr',
